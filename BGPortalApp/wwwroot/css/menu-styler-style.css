@@ -1,0 +1,149 @@
+.menu-styler {
+    z-index: 199999;
+    position: relative;
+    color: #373a3c;
+}
+
+    .menu-styler h5, .menu-styler .h5,
+    .menu-styler h6,
+    .menu-styler .h6 {
+        color: #37474f;
+    }
+
+    .menu-styler hr {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-styler .style-toggler > a {
+        position: fixed;
+        right: 0;
+        top: 50px;
+        z-index: 1031;
+        transition: 0.3s ease-in-out;
+    }
+
+        .menu-styler .style-toggler > a:before {
+            content: "Status";
+            width: 60px;
+            height: 22px;
+            position: absolute;
+            padding-left: 10px;
+            color: white;
+            right: 0;
+            top: 0;
+            z-index: 1001;
+            background: #ff5252;
+            transition: 0.3s ease-in-out;
+            border-radius: 30px 0 0 30px;
+            box-shadow: -4px 0 8px rgba(255, 82, 82, 0.16), -6px 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-styler .style-toggler > a:after {
+            content: "";
+            top: 12px;
+            font-size: 21px;
+            position: absolute;
+            right: 11px;
+            font-family: "feather";
+            z-index: 1029;
+            line-height: 1;
+            color: #fff;
+            transition: 0.3s ease-in-out;
+        }
+
+@media all and (-ms-high-contrast: none) {
+    .menu-styler .style-toggler > a:after {
+        line-height: 0.5;
+        top: 18px;
+    }
+}
+
+.menu-styler.open .style-toggler > a, .menu-styler.prebuild-open .style-toggler > a {
+    right: 400px;
+    -webkit-animation: sh-shake 0s ease infinite;
+    animation: sh-shake 0s ease infinite;
+}
+
+    .menu-styler.open .style-toggler > a:after, .menu-styler.prebuild-open .style-toggler > a:after {
+        content: "";
+        -webkit-animation: anim-rotate 0s linear infinite;
+        animation: anim-rotate 0s linear infinite;
+    }
+
+.menu-styler.open .prebuild-toggler > .prebuild-group, .menu-styler.prebuild-open .prebuild-toggler > .prebuild-group {
+    right: calc(400px - 100px);
+}
+
+.menu-styler.open .style-block {
+    right: 0;
+    box-shadow: -6px 0 12px rgba(0, 0, 0, 0.175);
+}
+
+.menu-styler.prebuild-open .style-block-prebuild {
+    right: 0;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu-styler .style-block,
+.menu-styler .style-block-prebuild {
+    position: fixed;
+    top: 50px;
+    right: -400px;
+    width: 400px;
+    border-radius: 4px 0 0 4px;
+    background: #fff;
+    z-index: 1030;
+    transition: 0.3s ease-in-out;
+    padding: 10px;
+    /*padding: 25px 20px 20px;*/
+}
+
+.menu-styler .mst-scroll {
+    height: calc(100vh - 175px);
+    background-color: rgba(70, 128, 255, 0.03);
+    padding: 0 15px;
+}
+
+.menu-styler label {
+    margin-bottom: 3px;
+}
+
+.menu-styler .switch input[type=checkbox] + .cr {
+    top: 8px;
+}
+
+.menu-styler .radio input[type=radio] + .cr {
+    margin-right: 10px;
+}
+
+    .menu-styler .radio input[type=radio] + .cr:after, .menu-styler .radio input[type=radio] + .cr:before {
+        margin-right: 3px;
+    }
+
+.menu-styler h6, .menu-styler .h6 {
+    position: relative;
+    margin: 20px 0 10px;
+}
+
+.menu-styler .nav-pills {
+    padding: 0;
+    box-shadow: none;
+}
+
+    .menu-styler .nav-pills li {
+        width: 33.3333333333%;
+    }
+
+.menu-styler .m-style-scroller {
+    padding: 15px 20px;
+    box-shadow: none;
+    background-color: #ecf0f5;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+@media only screen and (max-width: 992px) {
+    .menu-styler {
+        display: none;
+    }
+}

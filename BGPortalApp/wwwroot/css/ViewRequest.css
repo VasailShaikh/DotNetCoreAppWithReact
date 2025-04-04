@@ -1,0 +1,20 @@
+﻿.tbl_buttons
+{
+    margin-left: 30px;
+}
+.tbl_buttons1 {
+    margin-left: 50px;
+}
+
+.tbl_buttons td {
+    display: inline-block;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    align-self: center;
+}
+
+.tbl_buttons > tbody > tr >
+td {
+    padding: 8px 16px;
+  border:none;
+}

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<BGPortalApp.Models.StatusCount>
+
+<link href="~/css/startmin.css" rel="stylesheet" />
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+<section class="group-project container-s" style="margin-left:2%;padding-left:12%;">
+    <div class="row heading">
+        <div class="main-header center">
+            <h4>BG REQUESTS</h4>
+        </div>
+    </div>
+    @{
+        int count = 1;
+        string sty = "yellow";
+    }
+    <div class="row m-b-30 dashboard-header">
+
+        @foreach (var item in Model)
+        {
+            count++;
+            switch (count.ToString())
+            {
+                case "1":
+                    {
+                        sty = "warning";
+                        break;
+                    }
+                case "2":
+                    {
+                        sty = "primary";
+                        break;
+                    }
+                case "3":
+                    {
+                        sty = "success";
+                        break;
+                    }
+                case "4":
+                    {
+                        sty = "danger";
+                        break;
+                    }
+                case "5":
+                    {
+                        sty = "info";
+                        break;
+                    }
+                case "6":
+                    {
+                        sty = "tertiary";
+
+                        count = 0;
+                        break;
+                    }
+            }
+            <div class="col-lg-3 col-md-6 div-main">
+                <div class="panel panel-@sty">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <i class="fa @item.Icon fa-5x"></i>
+                            </div>
+                            <div class="col-xs-2">
+                            </div>
+                            <div class="col-xs-8">
+                                <div class="huge text-center">@item.Total</div>
+                                <div class="lbl-stage text-center">@item.Stage</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="bold" href='/Home/BGRequests/?param=@(Common.Encrypt(Convert.ToString(item.Id_Stage)))'>
+                        <div class="panel-footer">
+                            <span class="pull-left bold">View Details</span>
+                            <span class="pull-right bold"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<script>
+    $(document).ready(function ()
+    {
+        divbox = $(".panel-heading").map(function () {
+            $(this).css("height", getmaxdivHeight() + 'px;');
+        }).get();
+    });
+    function random_color() {
+        //var colors = ["#31b0d5", "#2849ed3d", "#E5E5E5", "#5bc0de", "#ffd800"];
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.round(Math.random() * letters.length)];
+        }
+        console.log('color :' + color);
+        return color;
+    };
+    function getmaxdivHeight() {
+        var maxhght = 0;
+        $('.panel-heading').get().reduce(function (prev, curr) {
+            maxhght = $(curr).height() > $(prev).height() ? curr : prev;
+        });
+        return maxhght;
+    }
+
+</script>

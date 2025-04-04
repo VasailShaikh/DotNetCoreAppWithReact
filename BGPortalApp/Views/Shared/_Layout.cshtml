@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BGPortalApp</title>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/quill/quill.js"></script>
+    <script src="~/lib/dual-list/jquery.bootstrap-duallistbox.js"></script>
+    <script src="~/lib/modernizr/modernizr.js"></script>
+    <script src="~/lib/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/nanoscroller/nanoscroller.js"></script>
+
+  
+    <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/magnific-popup/magnific-popup.js"></script>
+    <script src="~/lib/select2/select2.js"></script>
+    <script src="~/lib/jquery-datatables-bs3/assets/js/datatables.js"></script>
+    <script src="~/lib/tables/dataTables.fixedColumns.min.js"></script>
+    <script src="~/js/theme.custom.js"></script>
+    <script src="~/js/theme.init.js"></script>
+    <script src="~/js/theme.js"></script>
+    
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/nanoscroller/nanoscroller.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bglist.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />    
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BGPortalApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/viewrequest.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/magnific-popup/magnific-popup.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap-datepicker/css/datepicker3.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/select2/select2.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/jquery-datatables-bs3/assets/css/datatables.css" asp-append-version="true" />    
+    <link rel="stylesheet" href="~/css/default.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/theme-custom.css"asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/quill/quill.snow.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/Lobibox/lobibox.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/sweetalert/sweetalert2.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/RingingBell.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/menu-styler-style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Badge.css" asp-append-version="true" />
+
+
+   
+
+</head>
+<body>
+        <div class="overlay">
+            <div class="overlay__inner">
+                <div class="overlay__content"><span class="spinner"></span></div>
+            </div>
+        </div>
+      
+        <section class="body">
+            <header class="header">
+                <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+                <div class="logo-container">
+                    <a href="#" class="logo">
+                        <img src="~/Images/Latest_Logo.png" height="35" alt="" />
+                    </a>
+
+                    <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+                    </div>
+                </div>
+
+
+                <!-- start: search & user box -->
+                <div class="header-right">
+                    <ul class="nav ace-nav">
+                      
+                            <li class="transparent dropdown-modal">
+                                <a href="~/UserManual/BG_Lteh_User Manual.pdf" target="_blank" title="User Manual">
+                                    <img src="~/Images/UserManual.png" style="width: 32px;height: 32px;" />
+                                </a>
+                            </li>
+                       
+
+                        <li class="light-blue dropdown-modal">
+                            <a data-toggle="dropdown" href="#">
+                                <span class="user-info">
+                                   
+                                </span>
+                                <i class="ace-icon fa fa-caret-down"></i>
+                            </a>
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="">
+                                <li>
+                                    <a href="@Url.Action("Logout","LoginAd")">
+                                        <i class="ace-icon fa fa-power-off"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+                
+
+                </div>
+                <!-- end: search & user box -->
+
+            </header>
+            <div class="inner-wrapper" style="padding-top:0px;">
+                <section role="main" class="content-body" id="Topbody">
+                    @{
+                        Html.RenderPartial("_Menu");
+                    }
+                
+                    <div style="padding: 5px; display:none;" id="divstatus">
+                        <span class="badge badge-primary" data-toggle="tooltip" title="Softcopy Pending at Indexer">
+                            1-Softcopy Pending at INDEXER
+                        </span>
+                        <span class="badge badge-secondary" data-toggle="tooltip" title="Softcopy Reviewed By Indexer">
+                            2-Softcopy Reviewed By Indexer
+                        </span>
+                        <span class="badge badge-info" data-toggle="tooltip" title="Softcopy Approved by BG PROCESSOR">
+                            3-Softcopy Approved by BG PROCESSOR
+                        </span>
+                        @*<span class="badge badge-light" data-toggle="tooltip" title="Hardcopy Approved by L1">
+                            4-Hardcopy Approved by L1
+                        </span>
+                        <span class="badge badge-info" data-toggle="tooltip" title="Hardcopy Approved by L2">
+                            5-Hardcopy Approved by L2
+                        </span>*@
+                        <span class="badge badge-success" data-toggle="tooltip" title="Sent To SAP">
+                            4-Sent to SAP
+                        </span>
+                        <span class="badge badge-warning" data-toggle="tooltip" title="Hardcopy Received by Vendor">
+                            5-Hardcopy Received by Vendor
+                        </span>
+                        <span class="badge badge-danger" data-toggle="tooltip" title="Rejected">
+                            6-Rejected
+                        </span>
+                    </div>
+                    @RenderBody()
+                </section>
+            </div>
+        </section>
+        <div class="holder">
+            <div class="log-out-section" style="background: #f7c448;">
+                <div class="log-out-area">
+                   
+                </div>
+            </div>
+        </div>
+       
+        
+
+        <script type="text/javascript">
+           
+            $(document).ready(function ()
+            {
+        $("#divstatus").remove();
+        
+    });
+
+            $(".nav-parent").click(function () {
+
+                if ($(this).hasClass("nav-expanded")) {
+                    $(this).removeClass("nav-expanded");
+                }
+                else {
+                    $(this).addClass("nav-expanded");
+                }
+            });
+            document.onreadystatechange = function () {
+                if (document.readyState !== "complete") {
+                    $("#loader").show();
+                    $(".overlay").show();
+                } else {
+                    $("#loader").hide();
+                    $(".overlay").hide();
+                }
+            };
+
+            function Chattoggle() {
+                if ($('#pnlChatNotification').hasClass('open')) 
+                {
+                    $('#pnlChatNotification').removeClass('open');                    
+                } else
+                {
+                    $('#pnlChatNotification').addClass('open');
+                   
+                }
+            }
+            </Script>
+</body>
+</html>

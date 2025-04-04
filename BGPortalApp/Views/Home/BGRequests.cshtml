@@ -1,0 +1,178 @@
+﻿@model IEnumerable<BGPortalApp.Models.BGlist>
+
+<link href="~/css/bglist.css" rel="stylesheet" />
+<link href="~/css/startmin.css" rel="stylesheet" />
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/css/menu-styler-style.css" rel="stylesheet" />
+<link href="~/lib/lobibox/lobibox.css" rel="stylesheet" />
+
+
+@{
+    ViewData["Title"] = "BGRequests";
+}
+<section class="group-project">
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-12 ">
+            <section class="panel-featured create-rule add-group">
+                <header class="panel-heading">
+                    <h2 class="panel-title" style="line-height:unset">
+                        <i class="fa fa-list-ul"></i> &nbsp;My Pending BG
+                        <span class="pull-right" style="padding-right:10px;padding-left:20px;">
+                        </span>
+
+                        <span class="pull-right" style="padding-right:5px;display:block">
+                            <div class="dropdown dropleft" id="dropdownShortMenu">
+                                <button class="btn btn-info btn-sm dropdown-toggle " type="button" id="btnSortBy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding: 2px; margin-left: 5px;">
+                                    Sort By
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <ul class="list-left">
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('BGName','BG Name')">BG Name</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('VendorCode','Vendor Code')">Vendor Code</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('ProjectCode','Project Name')">Project Name</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('PONO','PO NO')">PO NO</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('BGExpiry','Validity')">Validity</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('Indexer','Indexer')">Indexer</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('Stage','Status')">Status</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('Id_Stage','H/S Status')">H/S Status</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('ASC','Submit Date ASC')">Submit Date ASC</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('DSC','Submit Date DSC')">Submit Date DSC</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('LastActionOn','')">Latest Action On</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('EBG','E-BG')">E-BG</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" onclick="ShortBy('Expired','Expired')">Expired</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </span>
+                        <span class="pull-right">
+                            <a class="btn btn-success btn-xs" onclick="GetAllBGList()">
+                                ALL
+                            </a>
+                        </span>
+                        <span class="pull-right" style="padding-left:10px;">
+                            <div class="input-group" style="width:200px;float: right;">
+                                <input type="text" class="search-query" id="nav-search-input" onkeydown="handleSearchKeyPress(event)" placeholder="Search" autocomplete="off" style="color:black">
+                                <span class="input-group-btn">
+                                    <a class="btn btn-info btn-xs" onclick="GetBGList(1)">
+                                        <span class="ace-icon fa fa-search icon-on-right"></span>
+                                    </a>
+                                </span>
+                            </div>
+                        </span>
+                        <span class="pull-right">
+                            <select id="ddlStatusType" class="form-control" onchange="GetBGList(1)" style="height: 23px;font-size: 12px;padding: 3px;">
+                                <option value="-1">All Status</option>                          
+                                    
+                                    <option value="0">1. Pending With Indexer</option>
+                                    <option value="1">2. Approved by Indexer</option>
+                                    <option value="2">3. Approved by BG Processor</option>
+                                    <option value="3">4. Data Pushed in SAP</option>
+                                    <option value="4">5. Return BG - Pending With Buyer</option>
+                                    <option value="5">6. Return BG - Pending With BG Processor</option>
+                                    <option value="6">7. Return BG - Hold By Buyer</option>
+                                    <option value="7">8. BG Closed</option>
+                                    <option value="8">9. HardCopy Returned</option>
+                                    <option value="9">10. Return BG - Hold By BG Processor</option>
+                                    <option value="10">11. Return BG - Success</option>
+                                    <option value="11">12. BG Expired-Awaiting Extension</option>
+                                    <option value="12">13. On Hold</option>
+                                    <option value="13">14. Amend Request Sent To Vendor</option>
+                                    <option value="14">15. Pending With AI Verification</option>
+                                    <option value="15">16. Processed by AI Verification</option>                              
+                                   
+                            </select>
+                        </span>
+                    </h2>
+                </header>            
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive ">
+                <table id="userDatatable222" class="table table-bordered mb-none dataTable table_design">
+                    <thead align="center">
+                        <tr>
+                            <th class="center" style="width: 35px;">ID</th>
+                            <th class="" style="max-width: auto;min-width:200px">BG Name</th>
+                            <th class="center" style="width: 100px;">Vendor Code</th>
+                            <th class="center" style="min-width:100px">Vendor Name</th>
+                            <th class="center">PO NO.</th>
+                            <th class="center">BGType</th>
+                            <th class="center" style="width: 100px;">Validity</th>
+                            <th class="center">Amount</th>
+                            <th class="center">Proccessor</th>
+                            <th class="center">Status</th>
+                            <th class="center">Submit Date</th>
+                            <th class="center" style="width: 75px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userDatatable2">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="footer_fixed">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ul class="pagination">
+                            <li class="">
+                                <select class="" title="Records per Page" style="padding: 0px; height: 27px" id="ddlPageSize" onchange="GetBGList(1)">
+                                    <option selected="selected" value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <ul class="pagination" id="footerPaging">
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <ul class="pagination pull-right" style="margin-right:10px !important;">
+                            <li class="disabled" id="footerDisplayingItems"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/js/bglist.js"></script>

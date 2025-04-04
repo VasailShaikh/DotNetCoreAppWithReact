@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGPortalApp", "BGPortalApp\BGPortalApp.csproj", "{5373D2DF-437F-497C-9730-D8365618988A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5373D2DF-437F-497C-9730-D8365618988A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5373D2DF-437F-497C-9730-D8365618988A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5373D2DF-437F-497C-9730-D8365618988A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5373D2DF-437F-497C-9730-D8365618988A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DFD6DE5-3BBB-4F82-B4FD-D409D3C85882}
+	EndGlobalSection
+EndGlobal
